@@ -1,10 +1,14 @@
 import "./App.css";
 import Layout from "./Components/Layout/Layout";
-import Home from "./Components/Pages/Home/Home";
+import Quiz from "./Components/Pages/Quiz/Quiz";
+
 function App() {
   return (
     <Layout>
-      <Home />
+      {/* <Home /> */}
+      {/* <Signup /> */}
+      {/* <Login /> */}
+      <Quiz />
     </Layout>
   );
 }
