@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import TextInput from "../TextInput/TextInput";
 import Button from "./../Button/Button";
 import Form from "./../Form/Form";
 import "./LoginForm.css";
+
 const LoginForm = () => {
   return (
     <Form className={"login"}>
@@ -14,7 +16,7 @@ const LoginForm = () => {
       </Button>
 
       <div className="info">
-        Don't have an account? <a href="signup.html">Signup</a> instead.
+        Don't have an account? <Link to="/signup">Signup</Link> instead.
       </div>
     </Form>
   );

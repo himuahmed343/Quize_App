@@ -1,12 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Account.css";
+
 const Account = () => {
   return (
     <div className={"account"}>
       <span className="material-icons-outlined" title="Account">
         account_circle
       </span>
-      <a href="signup.html">Signup</a>
+      <Link to="/signup">Signup</Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 };
