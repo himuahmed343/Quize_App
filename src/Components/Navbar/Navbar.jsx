@@ -10,7 +10,7 @@ const Navbar = () => {
         <li>
           <Link to="/" className={"brand"}>
             <img src={Logo} alt="/" />
-            <h3>Learn with Sumit</h3>
+            <h3>Quizz App</h3>
           </Link>
         </li>
       </ul>
