@@ -1,9 +1,11 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import Answers from "../../Answers/Answers";
 import MiniPlayer from "./../../MiniPlayer/MiniPlayer";
 import ProgressBar from "./../../ProgressBar/ProgressBar";
 
 const Quiz = () => {
+  const { id } = useParams();
   return (
     <>
       <h1>Pick three of your favorite Star Wars Flims</h1>
