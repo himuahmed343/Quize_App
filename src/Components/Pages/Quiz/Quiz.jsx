@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import _ from "lodash";
 import { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 // import useQuestions from "../../hooks/useQuestions";
 import useQuestions from "../../../hooks/useQuestions";
+=======
+import React from "react";
+>>>>>>> parent of 3a5fca8 (add dynamic video, infinite page scroll)
 import Answers from "../../Answers/Answers";
 import MiniPlayer from "./../../MiniPlayer/MiniPlayer";
 import ProgressBar from "./../../ProgressBar/ProgressBar";
@@ -30,6 +34,7 @@ const reducer = (state, action) => {
 };
 
 const Quiz = () => {
+<<<<<<< HEAD
   const { id } = useParams();
   const { loading, error, questions } = useQuestions(id);
   const [currentQuestion] = useState(0);
@@ -51,6 +56,8 @@ const Quiz = () => {
       value: e.target.checked,
     });
   }
+=======
+>>>>>>> parent of 3a5fca8 (add dynamic video, infinite page scroll)
   return (
     <>
       {loading && <div>Loading...</div>}
