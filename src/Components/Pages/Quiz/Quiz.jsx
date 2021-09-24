@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import _ from "lodash";
 import { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -7,35 +8,18 @@ import useQuestions from "../../../hooks/useQuestions";
 =======
 import React from "react";
 >>>>>>> parent of 3a5fca8 (add dynamic video, infinite page scroll)
+=======
+import React from "react";
+import { useParams } from "react-router-dom";
+>>>>>>> parent of 230fafb (Quiz page upgrade)
 import Answers from "../../Answers/Answers";
 import MiniPlayer from "./../../MiniPlayer/MiniPlayer";
 import ProgressBar from "./../../ProgressBar/ProgressBar";
 
-const initialState = null;
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "questions":
-      action.value.forEach((question) => {
-        question.options.forEach((option) => {
-          option.checked = false;
-        });
-      });
-      return action.value;
-    case "answer":
-      const questions = _.cloneDeep(state);
-      questions[action.questionID].options[action.optionIndex].checked =
-        action.value;
-
-      return questions;
-    default:
-      return state;
-  }
-};
-
 const Quiz = () => {
 <<<<<<< HEAD
   const { id } = useParams();
+<<<<<<< HEAD
   const { loading, error, questions } = useQuestions(id);
   const [currentQuestion] = useState(0);
 
@@ -58,22 +42,15 @@ const Quiz = () => {
   }
 =======
 >>>>>>> parent of 3a5fca8 (add dynamic video, infinite page scroll)
+=======
+>>>>>>> parent of 230fafb (Quiz page upgrade)
   return (
     <>
-      {loading && <div>Loading...</div>}
-      {error && <div>There was an error</div>}
-      {!loading && !error && qna && qna.length > 0 && (
-        <>
-          <h1>{qna[currentQuestion].title}</h1>
-          <h4>Question can have multiple answers</h4>
-          <Answers
-            options={qna[currentQuestion].options}
-            handleChange={handleAnswerChange}
-          />
-          <ProgressBar />
-          <MiniPlayer />
-        </>
-      )}
+      <h1>Pick three of your favorite Star Wars Flims</h1>
+      <h4>Question can have multiple answers</h4>
+      <Answers />
+      <ProgressBar />
+      <MiniPlayer />
     </>
   );
 };

@@ -30,8 +30,6 @@ function App() {
         </Layout>
       </AuthProvider>
     </Router>
-
-    // <Quiz />
   );
 }
 
