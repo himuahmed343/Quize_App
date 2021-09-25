@@ -7,6 +7,7 @@ import Video from "../Video/Video";
 export default function Videos() {
   const [page, setPage] = useState(1);
   const { loading, error, videos, hasMore } = useVideoList(page);
+  // console.log(videos);
 
   return (
     <div>
@@ -45,7 +46,7 @@ export default function Videos() {
           )}
         </InfiniteScroll>
       )}
-      {!loading && videos.length === 0 && <div>No data found!</div>}
+      {!loading && videos.length === 0 && <div>No data found, Bro!</div>}
       {error && <div>There was an error!</div>}
       {loading && <div>Loading...</div>}
     </div>

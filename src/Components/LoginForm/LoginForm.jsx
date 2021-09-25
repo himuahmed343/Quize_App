@@ -6,7 +6,7 @@ import Button from "./../Button/Button";
 import Form from "./../Form/Form";
 import "./LoginForm.css";
 
-const LoginForm = () => {
+export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,6 +18,7 @@ const LoginForm = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     try {
       setError("");
       setLoading(true);
@@ -26,11 +27,12 @@ const LoginForm = () => {
     } catch (err) {
       console.log(err);
       setLoading(false);
-      setError("Failed to login");
+      setError("Failed to login!");
     }
   }
+
   return (
-    <Form className={"login"} onSubmit={handleSubmit}>
+    <Form style={{ height: "330px" }} onSubmit={handleSubmit}>
       <TextInput
         type="text"
         placeholder="Enter email"
@@ -48,9 +50,11 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button disabled={loading} type="submit">
-        <span>Login Now</span>
+
+      <Button type="submit" disabled={loading}>
+        <span>Submit Now</span>
       </Button>
+
       {error && <p className="error">{error}</p>}
 
       <div className="info">
@@ -58,6 +62,4 @@ const LoginForm = () => {
       </div>
     </Form>
   );
-};
-
-export default LoginForm;
+}

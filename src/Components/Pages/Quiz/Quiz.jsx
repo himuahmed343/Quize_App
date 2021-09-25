@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import useQuestions from "../../../hooks/useQuestion";
 import Answers from "../../Answers/Answers";
@@ -56,7 +56,7 @@ export default function Quiz() {
   return (
     <>
       {loading && <div>Loading ...</div>}
-      {error && <div>There was an error!</div>}
+      {error && <div>There was an error, understand!</div>}
       {!loading && !error && qna && qna.length > 0 && (
         <>
           <h1>{qna[currentQuestion].title}</h1>
@@ -70,6 +70,23 @@ export default function Quiz() {
           <MiniPlayer />
         </>
       )}
+      {/*
+      <h4>Question can have multiple answers</h4>
+
+      <ProgressBar />
+      <MiniPlayer /> */}
     </>
   );
 }
+
+// import React from "react";
+
+// const Quiz = () => {
+//   return (
+//     <div>
+//       <p>hello </p>
+//     </div>
+//   );
+// };
+
+// export default Quiz;

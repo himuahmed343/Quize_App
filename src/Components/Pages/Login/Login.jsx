@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../../LoginForm/LoginForm";
+import LoginForm from "../../LoginForm/LoginForm";
 import Illustration from "./../../Illustration/Illustration";
 const Login = () => {
   return (
@@ -7,7 +7,7 @@ const Login = () => {
       <h1>Login to your account</h1>
       <div className={"column"}>
         <Illustration />
-        <Form></Form>
+        <LoginForm></LoginForm>
       </div>
     </>
   );
