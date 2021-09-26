@@ -32,7 +32,7 @@ const MiniPlayer = () => {
       </span>
 
       <img src={image} alt="" />
-      <p>#23 React Hooks Bangla - React useReducer hook Bangla</p>
+      <p>#23 React Hooks Eng - React useReducer hook Bangla</p>
     </div>
   );
 };
