@@ -1,10 +1,12 @@
+import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import useQuestions from "../../../hooks/useQuestion";
 import Answers from "../../Answers/Answers";
 import MiniPlayer from "../../MiniPlayer/MiniPlayer";
 import ProgressBar from "../../ProgressBar/ProgressBar";
+import { useAuth } from "./../../../Contexts/AuthContext";
 
 const initialState = null;
 
@@ -32,10 +34,12 @@ export default function Quiz() {
   const { id } = useParams();
   // console.log(useParams());
   const { loading, error, questions } = useQuestions(id);
-  const [currentQuestion] = useState(0);
-  // const [currentQuestion, setCurrentQuestion] = useState(0);
+  // const [currentQuestion] = useState(3);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const [qna, dispatch] = useReducer(reducer, initialState);
+  const { currentUser } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({
@@ -53,6 +57,41 @@ export default function Quiz() {
     });
   }
 
+  //handle when user click on next button to get the next question
+  function nextQuestion() {
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+    }
+  }
+  //handle when user click on prev button to get the prev question
+  function prevQuestion() {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent - 1);
+    }
+  }
+
+  //submit quiz
+  async function submit() {
+    const { uid } = currentUser;
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
+
+    await set(resultRef, {
+      [id]: qna,
+    });
+
+    history.push({
+      pathname: `/result/${id}`,
+      state: {
+        qna,
+      },
+    });
+  }
+
+  //calculate percentage of progress
+  const percentage =
+    questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
+
   return (
     <>
       {loading && <div>Loading ...</div>}
@@ -62,31 +101,19 @@ export default function Quiz() {
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
           <Answers
-            input
+            input={true}
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />
-          <ProgressBar />
+          <ProgressBar
+            next={nextQuestion}
+            prev={prevQuestion}
+            submit={submit}
+            progress={percentage}
+          />
           <MiniPlayer />
         </>
       )}
-      {/*
-      <h4>Question can have multiple answers</h4>
-
-      <ProgressBar />
-      <MiniPlayer /> */}
     </>
   );
 }
-
-// import React from "react";
-
-// const Quiz = () => {
-//   return (
-//     <div>
-//       <p>hello </p>
-//     </div>
-//   );
-// };
-
-// export default Quiz;
