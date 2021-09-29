@@ -5,7 +5,7 @@ const Video = ({ title, id, noq }) => {
   return (
     <div className={"video"}>
       <img
-        src={`http://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+        src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
         alt={title}
       />
       <p>{title}</p>

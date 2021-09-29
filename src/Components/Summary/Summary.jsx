@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import successImage from "../../assets/images/success.png";
 import useFetch from "./../../hooks/useFetch";
 import "./Summary.css";
 
 const Summary = ({ score, noq }) => {
-  const getKeywords = () => {
+  const getKeywords = useMemo(() => {
     if ((score / (noq * 5)) * 100 < 50) {
       return "failed";
     } else if ((score / (noq * 5)) * 100 < 75) {
@@ -14,12 +14,12 @@ const Summary = ({ score, noq }) => {
     } else {
       return "excellent";
     }
-  };
+  }, [score, noq]);
   const { loading, error, result } = useFetch(
-    `https://api.pexels.com/v1/search?query=${getKeywords()}&per_page=1`,
+    `https://api.pexels.com/v1/search?query=${getKeywords}&per_page=1`,
     "GET",
     {
-      Authorization: "563492ad6f9170000100000189dae92e4f8342d491ec2fc30491742d",
+      Authorization: process.env.REACT_APP_PEXELS_API_KEY,
     }
   );
   const image = result ? result?.photos[0].src.medium : successImage;
